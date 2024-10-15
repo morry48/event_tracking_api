@@ -192,5 +192,12 @@ class InitSeeder extends Seeder
             'estimated_completion_at' => now(),
             'actual_completion_at' => now(),
         ]);
+        User::create([
+            'id' => Str::uuid(),
+            'name' => 'warehouse_1',
+            'email' => 'warehouse_1@test.com',
+            'password' => Hash::make('password'),
+            'role_id' => Role::where('name', RoleEnum::WAREHOUSE_STAFF)->first()->id,
+        ]);
     }
 }

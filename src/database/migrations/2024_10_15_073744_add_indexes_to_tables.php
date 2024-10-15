@@ -35,29 +35,7 @@ return new class extends Migration {
 
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropIndex(['email']);
-            $table->dropIndex(['role_id']);
-        });
-
-        Schema::table('shipments', function (Blueprint $table) {
-            $table->dropIndex(['user_id']);
-            $table->dropIndex(['internal_reference_name']);
-        });
-
-        Schema::table('shipment_events', function (Blueprint $table) {
-            $table->dropIndex(['shipment_id']);
-            $table->dropIndex(['event_type']);
-            $table->dropIndex(['shipment_id', 'event_type']);
-        });
-
-        Schema::table('roles', function (Blueprint $table) {
-            $table->dropIndex(['name']);
-        });
-
-        Schema::table('permissions', function (Blueprint $table) {
-            $table->dropIndex(['name']);
-        });
+        //
     }
 };
 
