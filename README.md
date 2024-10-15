@@ -1,4 +1,23 @@
+## architecture
 
+### Package by feature
+
+- src
+  - app
+    - Features
+      - Shared
+      - Shipment
+        - Enums
+        - Presentation
+           - Controllers
+           - Requests
+        - Usecases
+        - Models
+        - Tests
+      - User
+    - database
+      - migrations
+- docker
 
 ## Init Setting（Using Docker for Mac）
 
