@@ -3,6 +3,7 @@
 ## Init Setting（Using Docker for Mac）
 
 ```
+cd event_tracking_api
 cp ./sr/.env.example ./src/.env
 docker compose up -d
 docker compose exec app composer install
