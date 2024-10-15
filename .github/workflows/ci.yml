@@ -27,7 +27,7 @@ jobs:
       - name: Build binary
         run: |
           cp src/.env.example src/.env
-          docker-compose up -d
+          docker compose up -d
           docker compose exec app composer install
           docker compose exec app php artisan key:generate
           docker compose exec app php artisan migrate
