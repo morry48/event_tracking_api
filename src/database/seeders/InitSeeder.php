@@ -104,7 +104,7 @@ class InitSeeder extends Seeder
         $shipment_2 = Shipment::create([
             'id' => Str::uuid(),
             'internal_reference_name' => 'shipment_2',
-            'user_id' => $user->id,
+            'user_id' => $staff_user->id,
         ]);
         ShipmentEvent::create([
             'id' => Str::uuid(),

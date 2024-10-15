@@ -51,7 +51,7 @@ class TestSeeder extends Seeder
                 $role->permissions()->attach($permission);
             }
         }
-        $user = User::create([
+        $staff_user = User::create([
             'id' => 'ec654765-c040-49ff-8d71-4e77cebaab5e',
             'name' => 'staff_1',
             'email' => 'staff_1@test.com',
@@ -61,7 +61,7 @@ class TestSeeder extends Seeder
         $shipment_1 = Shipment::create([
             'id' => Str::uuid(),
             'internal_reference_name' => 'shipment_1',
-            'user_id' => $user->id,
+            'user_id' => $staff_user->id,
         ]);
         ShipmentEvent::create([
             'id' => Str::uuid(),
@@ -102,7 +102,7 @@ class TestSeeder extends Seeder
         $shipment_2 = Shipment::create([
             'id' => Str::uuid(),
             'internal_reference_name' => 'shipment_2',
-            'user_id' => $user->id,
+            'user_id' => $staff_user->id,
         ]);
         ShipmentEvent::create([
             'id' => Str::uuid(),

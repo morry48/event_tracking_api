@@ -6,6 +6,8 @@ services:
       context: .
       dockerfile: docker/app/Dockerfile
     container_name: laravel_app
+    depends_on:
+      - db
     working_dir: /var/www
     volumes:
       - ./src:/var/www
