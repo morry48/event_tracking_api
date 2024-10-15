@@ -43,7 +43,7 @@ docker compose exec app ./vendor/bin/phpunit app
 
 - staff_1@test.com（password）
 - owner_1@test.com（password）
-- warehouse_1@test.com（com（password））
+- warehouse_1@test.com（password）
 
 ### how to use
 
