@@ -3,6 +3,7 @@
 
 namespace App\Features\Shipment\Tests\Usecases;
 
+use App\Features\Shipment\Enums\ShipmentGetTypeEnum;
 use App\Features\Shipment\Models\Shipment;
 use App\Features\Shipment\Models\ShipmentEvent;
 use App\Features\Shipment\Usecases\UpdateShipmentEventsUsecase;
@@ -51,7 +52,7 @@ class UpdateShipmentEventsUsecaseTest extends TestCase
         ];
 
         // Act: Execute the use case
-        $updatedShipment = $usecase->execute($inputData);
+        $updatedShipment = $usecase->execute($inputData, ShipmentGetTypeEnum::VIEW_ALL_SHIPMENTS);
 
         // Assert: Verify the event was updated in the database
         $updatedEvent = ShipmentEvent::where('shipment_id', $shipment->id)
