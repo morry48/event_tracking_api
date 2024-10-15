@@ -4,11 +4,15 @@ namespace App\Features\Shipment\Usecases;
 
 use App\Features\Shipment\Models\Shipment;
 use App\Features\Shipment\Models\ShipmentEvent;
+use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 
 class UpdateShipmentEventsUsecase
 {
+    use AuthorizesRequests;
+
     private Shipment $shipment;
     private ShipmentEvent $shipmentEvent;
 
@@ -23,6 +27,7 @@ class UpdateShipmentEventsUsecase
     /**
      * @param array $inputData Contains shipment ID, event data, and optional internal_reference_name.
      * @return Shipment
+     * @throws Exception
      */
     public function execute(array $inputData): Shipment
     {

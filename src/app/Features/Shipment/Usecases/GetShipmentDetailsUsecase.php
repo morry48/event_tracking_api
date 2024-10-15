@@ -2,10 +2,14 @@
 
 namespace App\Features\Shipment\Usecases;
 
+use App\Features\Shipment\Enums\ShipmentEventEnum;
+use App\Features\Shipment\Enums\ShipmentGetTypeEnum;
 use App\Features\Shipment\Models\Shipment;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class GetShipmentDetailsUsecase
 {
+    use AuthorizesRequests;
 
     private Shipment $shipment;
 
@@ -19,19 +23,32 @@ class GetShipmentDetailsUsecase
      * @param string $id
      * @return array
      */
-    public function execute(string $id): array
+    public function execute(string $id, string $getType): array
     {
         $shipment = $this->shipment->with('shipmentEvents')->findOrFail($id);
 
-        $events = $shipment->shipmentEvents->groupBy('event_type')->map(function ($eventGroup) {
-            $event = $eventGroup->first();
-            return [
-                'estimated_started_at' => $event->estimated_started_at,
-                'actual_started_at' => $event->actual_started_at,
-                'estimated_completion_at' => $event->estimated_completion_at,
-                'actual_completion_at' => $event->actual_completion_at,
-            ];
-        });
+        if ($getType === ShipmentGetTypeEnum::VIEW_DELIVERY_ONLY) {
+            // only delivery events
+            $events = $shipment->shipmentEvents->whereIn('event_type', ShipmentEventEnum::DELIVERY)->groupBy('event_type')->map(function ($eventGroup) {
+                $event = $eventGroup->first();
+                return [
+                    'estimated_started_at' => $event->estimated_started_at,
+                    'actual_started_at' => $event->actual_started_at,
+                    'estimated_completion_at' => $event->estimated_completion_at,
+                    'actual_completion_at' => $event->actual_completion_at,
+                ];
+            });
+        } else {
+            $events = $shipment->shipmentEvents->groupBy('event_type')->map(function ($eventGroup) {
+                $event = $eventGroup->first();
+                return [
+                    'estimated_started_at' => $event->estimated_started_at,
+                    'actual_started_at' => $event->actual_started_at,
+                    'estimated_completion_at' => $event->estimated_completion_at,
+                    'actual_completion_at' => $event->actual_completion_at,
+                ];
+            });
+        }
 
         return [
             'id' => $shipment->id,

@@ -4,6 +4,7 @@ namespace App\Features\Shipment\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Shipment extends Model
 {
@@ -20,7 +21,7 @@ class Shipment extends Model
         'user_id'
     ];
 
-    public function shipmentEvents()
+    public function shipmentEvents(): HasMany
     {
         return $this->hasMany(ShipmentEvent::class, 'shipment_id', 'id');
     }

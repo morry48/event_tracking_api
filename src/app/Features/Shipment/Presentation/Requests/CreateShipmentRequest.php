@@ -12,8 +12,6 @@ class CreateShipmentRequest extends FormRequest
     {
         return [
             'internal_reference_name' => 'required|string|max:255|unique:shipments,internal_reference_name',
-            'user_id' => 'required|uuid|exists:users,id',
-
             'events' => 'required|array',
 
             // preparation event
