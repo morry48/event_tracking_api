@@ -4,7 +4,7 @@
 
 ```
 cd event_tracking_api
-cp ./sr/.env.example ./src/.env
+cp ./src/.env.example ./src/.env
 docker compose up -d
 docker compose exec app composer install
 docker compose exec app php artisan key:generate
