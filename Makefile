@@ -1,9 +1,10 @@
 setup:
+	@echo "Copying .env.example to .env..."
+	cp ./sr/.env.example ./src/.env
+
 	@echo "Starting Docker containers..."
 	docker compose up -d
 
-	@echo "Copying .env.example to .env..."
-	docker compose exec app cp .env.example .env
 
 	@echo "Installing Composer dependencies..."
 	docker compose exec app composer install
