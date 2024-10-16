@@ -68,7 +68,7 @@ docker compose exec app ./vendor/bin/phpunit app
 ### how to use
 
 ```
-curl -X GET "localhost:8000/api/shipments \
+curl -X GET "localhost:8000/api/shipments" \
   -H "Authorization: Bearer " \
   -H "Content-Type: application/json" \
   -H "Accept: application/json"
